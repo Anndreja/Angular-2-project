@@ -1,0 +1,46 @@
+<h2>Items</h2>
+<p>
+    <label for="titles">Number of Items</label>   
+    <input type="number" (keyup)="loadData()" [(ngModel)]="numItems"  />
+</p>
+        
+        <alert type="danger" *ngFor="#alert of alerts;#i = index" dismissOnTimeout="3000" dismissible="true"  (close)="closeAlert(i)">
+            The item with number {{ alert }} was deleted
+        </alert>
+      <table class="table table-bordered">
+        <thead>
+            <th>Id</th>
+            <th>Title</th>
+            <th>Rating</th>
+            <th>Edit Rating</th>
+            <th>Delete</th>
+       </thead>
+       <tbody *ngIf="!loadDataStatus">
+         <tr *ngFor="#item of pageItems; #i=index">
+            <td>{{pageSettings.firstIndex+1+i}}</td> 
+            <td>{{item.title}}</td> 
+            <td>
+                <rating 
+                    [(ngModel)]="item.rating" 
+                    [max]="maxStars"
+                 >
+                </rating>
+            </td> 
+             <td>
+                 <input  type="number" [(ngModel)] = "item.rating" min="1" max="9"/>
+             </td>
+            <td>
+                <i class="glyphicon glyphicon-remove clickable" (click)="remove(item)"></i>
+            </td>
+         </tr>
+        </tbody>
+</table>
+ <pagination 
+         [totalItems]="numItems" 
+         [(ngModel)]="pageSettings.currentPage" 
+         [itemsPerPage] = "pageSettings.perPage"
+         class="pagination-sm"
+         (numPages)="numPages = $event"
+         (pageChanged) = "newPage($event)"
+         >
+</pagination>
