@@ -1,7 +1,7 @@
-Angular 2 project
+#Angular 2 project
 
-Routing,
-Components : grid, edit (form), navbar, search etc.
-Models,
-Simple validations,
-Services
+1. Routing,
+2. Components : grid, edit (form), navbar, search etc.
+3. Models,
+4. Simple validations,
+5. Services
